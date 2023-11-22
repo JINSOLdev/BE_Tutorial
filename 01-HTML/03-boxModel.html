@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>boxModel 실습</title>
+    <style>
+      /* 두 속성을 비교해보았다면, 앞으로 박스모델을 사용하기 전에 모든 박스 모델을 이렇게 통일시키고 사용하면 된다.  */
+      * {
+        box-sizing: border-box;
+      }
+
+      div {
+        width: 80px;
+        height: 8px;
+        border: 2px solid red;
+        padding: 15px;
+      }
+
+      .pb {
+        width: 500px;
+        height: 320px;
+        border: 2px solid blue;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bb {
+        box-sizing: border-box;
+      }
+
+      .cb {
+        box-sizing: content-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div>박스1</div>
+    <div class="pb">
+      <div>박스2</div>
+      <div>박스3</div>
+      <div>박스4</div>
+    </div>
+    <div>박스5</div>
+  </body>
+</html>
