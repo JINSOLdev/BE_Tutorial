@@ -9,8 +9,11 @@ function createTokenOfPhone(phoneNum) {
     }
 
     // 2. 휴대폰 토큰 6자리 만들기
-
+    const token = String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
+    console.log(token);
+    
     // 3. 휴대폰번호에 토큰 전송하기
+    console.log(phoneNum + '번호로 인증번호' + ' ' + token + '을 전송합니다!');
 }
 
 // API 실행하기
