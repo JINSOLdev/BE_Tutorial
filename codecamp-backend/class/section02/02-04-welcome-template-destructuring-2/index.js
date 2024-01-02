@@ -1,4 +1,3 @@
-// 구조분해할당으로 변경
 function getWelcomeTemplate({ name, age, school, createdAt }) {
     return `
       <html>
@@ -14,12 +13,18 @@ function getWelcomeTemplate({ name, age, school, createdAt }) {
   `;
 }
 
-const myUser = {
-    name: '철수',
-    age: 13,
-    school: '다람쥐초등학교',
-    createdAt: '2010-09-07',
-};
+const name = '철수';
+const age = 13;
+const school = '다람쥐초등학교';
+const createdAt = '2010-09-07';
 
-const result = getWelcomeTemplate(myUser);
+// const myUser = {
+//   name,
+//   age,
+//   school,
+//   createdAt,
+// };
+
+// shorthand property names 적용
+const result = getWelcomeTemplate({ name, age, school, createdAt });
 console.log(result);
