@@ -1,5 +1,6 @@
 import { checkValidationEmail, getWelcomeTemplate, sendWelcomeTemplateToEmail } from './email.js';
 
+
 function createUser(user) {
     // 1. 이메일이 정상인지 확인(1-존재여부, 2-"@"포함여부)
     const isValid = checkValidationEmail(user.email);

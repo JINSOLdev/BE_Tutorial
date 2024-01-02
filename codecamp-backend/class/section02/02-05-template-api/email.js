@@ -1,3 +1,5 @@
+import { getToday } from './utils.js';
+
 export function checkValidationEmail(email) {
     if (email === undefined || !email.includes('@')) {
         console.log('정확한 이메일 주소를 입력해주세요.');
@@ -16,7 +18,7 @@ export function getWelcomeTemplate({ name, age, school }) {
       <div>이름: ${name}</div>
       <div>나이: ${age}살</div>
       <div>학교: ${school}</div>
-      <div>가입일: 2022-3-22</div>
+      <div>가입일: ${getToday()}</div>
   </body>
 </html>
   `;
