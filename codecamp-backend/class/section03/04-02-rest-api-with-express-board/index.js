@@ -1,8 +1,9 @@
-// 게시글 조회하는 API
-
 import express from 'express';
+import { checkValidationPhone, getToken, sendTokenToSMS } from './phone.js';
 
 const app = express();
+
+app.use(express.json());
 
 // GET요청이 들어왔을 때
 app.get('/boards', (req, res) => {
@@ -31,7 +32,6 @@ app.get('/boards', (req, res) => {
     res.send(result);
 });
 
-app.use(express.json());
 app.post('/boards', (req, res) => {
     console.log(req.body);
 
@@ -39,6 +39,22 @@ app.post('/boards', (req, res) => {
 
     // 2. 저장 결과 응답 추가
     res.send('게시물 등록에 성공하였습니다.');
+});
+
+app.post('/tokens/phone', (req, res) => {
+    // req.body 객체의 myphone의 값을 myphone이라는 변수에 담기
+    const myphone = req.body.myphone;
+
+    // 1. 휴대폰번호 자릿수 맞는지 확인하기
+    const isValid = checkValidationPhone(myphone);
+    if (isValid) {
+        // 2. 휴대폰 토큰 6자리 만들기
+        const mytoken = getToken();
+
+        // 3. 휴대폰번호에 토큰 전송하기
+        sendTokenToSMS(myphone, mytoken);
+        res.send('인증완료!');
+    }
 });
 
 app.listen(3000, () => {
