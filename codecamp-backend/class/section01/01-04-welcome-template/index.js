@@ -1,4 +1,4 @@
-function getWelcomeTemplate({ name, age, school, createAt }) {
+function getWelcomeTemplate({ name, age, school, createAt }) {   // 구조분해 할당으로 작성된 중괄호
     const myTemplate = `
                         <html>
                           <body>
@@ -21,4 +21,4 @@ const school = 'Harvard University';
 const createAt = '2023-12-28';
 
 // 중괄호를 사용하여 인자를 나열하는 방법
-getWelcomeTemplate({ name, age, school, createAt });
+getWelcomeTemplate({ name, age, school, createAt });     // shorthand-property로 작성된 중괄호
