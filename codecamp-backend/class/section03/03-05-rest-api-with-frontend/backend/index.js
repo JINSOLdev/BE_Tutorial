@@ -5,10 +5,11 @@ import { checkPhone, getToken, sendTokenToSMS } from './phone.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 import { options } from './swagger/config.js';
-
+import cors from 'cors';
 
 const app = express();
 app.use(express.json()); // 옛날에는 bodyParser 사용
+app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerJsdoc(options)));
 
 app.get('/boards', (req, res) => {
