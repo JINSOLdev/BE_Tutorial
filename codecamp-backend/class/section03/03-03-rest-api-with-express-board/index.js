@@ -1,6 +1,15 @@
 // const express = require('express') => 옛날방식 commonjs, 요즘방식 module
 import express from 'express';
 
+import { checkPhone, getToken, sendTokenToSMS } from './phone.js'; // export 가져오기
+// import express from 'express'                                   // export default 가져오기
+// import aadfad from 'express                                     // export default 이름 바꿔서 가져오기
+// import qqqqqqqqq, {checkPhone as zzz, getToken} from './phone.js'  // export default와 export를 함께 쓰기
+
+// import * as ttt from './phone.js'                               // export 한방에 다 가져오기
+// ttt.checkPhone                                                  // export 한방에 다 가져오기
+// ttt.getToken                                                    // export 한방에 다 가져오기
+
 const app = express();
 
 // express에서 json 읽는 방법
@@ -29,6 +38,23 @@ app.post('/boards', (req, res) => {
 
     // 3. DB에 저장된 결과를 브라우저에 응답(response)주기
     res.send('게시물 등록에 성공했습니다.');
+});
+
+app.post('/tokens/phone', (req, res) => {
+    // console.log(req.body.myphone)
+    const myphone = req.body.qqq;
+
+    // 1. 휴대폰번호 자릿수 확인하기(10~11자리)
+    const isValid = checkPhone(myphone);
+    if (isValid === false) return;
+
+    // 2. 휴대폰번호 토큰 6자리 만들기
+    const myToken = getToken();
+
+    // 3. 휴대폰번호에 토큰 전송하기
+    sendTokenToSMS(myphone, myToken);
+
+    res.send('인증완료!!!');
 });
 
 // 3000번 포트에서 실행
